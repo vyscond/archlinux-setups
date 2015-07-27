@@ -19,7 +19,7 @@ server {
 
 
 app_name = input('[] app name: ')
-app_port = int(input('[] app port: '))
+app_port = input('[] app port: ')
 
 if app_name and app_port :
     with open('/etc/hostname','r') as f:

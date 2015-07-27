@@ -2,7 +2,7 @@ NGINXCONF='''
 # {app_name}'s config for Nginx
 server {
     listen 80; # Running port
-    server_name {app_name}{hostname};
+    server_name {app_name}.{hostname};
     location / {
         proxy_pass http://127.0.0.1:{app_port}/;
         #proxy_redirect     off;

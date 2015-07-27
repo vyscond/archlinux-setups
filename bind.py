@@ -89,6 +89,11 @@ ns1.{domain_name}.          IN      A       {domain_ip}
 domain_name = input('[] domain name: ') or 'test.com'
 domain_ip   = input('[] domain ip: ') or '0.0.0.0'
 
+with open('/etc/hostname','w+') as f:
+    f.write(
+        domain_name
+    )
+
 with open('/etc/named.conf','w+') as f:
     f.write(
         NAMED_CONF.replace('{domain_name}',domain_name).replace('{domain_ip}',domain_ip)

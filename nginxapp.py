@@ -24,7 +24,7 @@ app_port = int(input('[] app port: '))
 if app_name and app_port :
     with open('/etc/hostname','r') as f:
         hostname=''.join(f)
-    with open('/etc/nginx/sites-enabled/','w+') as f:
+    with open('/etc/nginx/sites-enabled/'+app_name+'.conf','w+') as f:
         f.write(
             NGINXCONF.replace('{app_name}',app_name)
                 .replace('{app_port}',app_port)

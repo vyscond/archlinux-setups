@@ -27,11 +27,31 @@ http {
         application/atom+xml;
 
     server {
-        listen 80; # Running port
-        server_name {hostname};
+        listen       80;
+        server_name  {hostname};
+        #charset koi8-r;
+        #access_log  logs/host.access.log  main;
+        location / {
+            root   /usr/share/nginx/html;
+            index  index.html index.htm;
+        }
+        #error_page  404              /404.html;
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   /usr/share/nginx/html;
+        }
     }
 
     include sites-enabled/*.conf;
 
 }
 '''
+
+with open('/etc/hostname','r') as f:
+    hostname=''.join(f)
+with open('/etc/nginx/nginx.conf','w+') as f:
+    f.write(
+        NGINXCONF.replace('{hostname}',hostname)
+    )
